@@ -27,16 +27,15 @@ public class XWalkBridgeHelper {
      * 初始化配置
      */
     public static final void initPreferences() {
-//        // The key string to allow/disallow having universal access from file origin.
-//        // 置是否允许通过file url加载的Javascript可以访问其他的源,包括其他的文件和http,https等其他的源
-//        XWalkPreferences.setValue(XWalkPreferences.ALLOW_UNIVERSAL_ACCESS_FROM_FILE, true);
-//
-//        // The key string to allow/disallow javascript to open window automatically.
-//        XWalkPreferences.setValue(XWalkPreferences.JAVASCRIPT_CAN_OPEN_WINDOW, false);
-//
-////        //添加对javascript支持
-////        XWalkPreferences.setValue("enable-javascript", true);
-//        XWalkPreferences.setValue(XWalkPreferences.SUPPORT_MULTIPLE_WINDOWS, true);
+        // The key string to allow/disallow having universal access from file origin.
+        // 置是否允许通过file url加载的Javascript可以访问其他的源,包括其他的文件和http,https等其他的源
+        XWalkPreferences.setValue(XWalkPreferences.ALLOW_UNIVERSAL_ACCESS_FROM_FILE, true);
+
+        // The key string to allow/disallow javascript to open window automatically.
+        XWalkPreferences.setValue(XWalkPreferences.JAVASCRIPT_CAN_OPEN_WINDOW, false);
+
+//        //添加对javascript支持
+        XWalkPreferences.setValue(XWalkPreferences.ENABLE_JAVASCRIPT, true);
     }
 
     /**
@@ -106,8 +105,9 @@ public class XWalkBridgeHelper {
         if (uiClient != null) {
             webView.setUIClient(uiClient);
         }
-        if (resourceClient != null)
+        if (resourceClient != null){
             webView.setResourceClient(resourceClient);
+        }
     }
 
     /**

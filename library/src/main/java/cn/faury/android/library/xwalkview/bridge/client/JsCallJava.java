@@ -1,10 +1,10 @@
 /**
- *  安卓Hybrid开发桥接包
+ * 安卓Hybrid开发桥接包
  *
- *  @author faury
- *
- *  版权所有：秋刀鱼
- *  Copyright (c) http://www.faury.cn
+ * @author faury
+ * <p>
+ * 版权所有：秋刀鱼
+ * Copyright (c) http://www.faury.cn
  */
 
 package cn.faury.android.library.xwalkview.bridge.client;
@@ -40,9 +40,9 @@ public class JsCallJava {
     /**
      * 构造函数
      */
-    public JsCallJava(final String injectedName,final Class injectedCls) {
+    public JsCallJava(final String injectedName, final Class injectedCls) {
         try {
-            if (injectedName==null || injectedName.length()==0) {
+            if (injectedName == null || injectedName.length() == 0) {
                 mInjectedName = XWalkBridgeHelper.DEFAULT_INJECTED_NAME;
             } else {
                 mInjectedName = injectedName;
@@ -52,7 +52,7 @@ public class JsCallJava {
             Method[] methods = injectedCls.getMethods();
             StringBuilder sb = new StringBuilder();
             sb.append("javascript:(function(b){");
-            sb.append(String.format("console.log(\"HostApp %s initialization begin\");",mInjectedName));
+            sb.append(String.format("console.log(\"HostApp %s initialization begin\");", mInjectedName));
             sb.append("var a={queue:[],callback:function(){var d=Array.prototype.slice.call(arguments,0);var c=d.shift();var e=d.shift();this.queue[c].apply(this,d);if(!e){delete this.queue[c]}}};");
             for (Method method : methods) {
                 String sign;
@@ -71,8 +71,8 @@ public class JsCallJava {
             sb.append(mInjectedName);
             sb.append(
                     " call error, code:\"+g.code+\", message:\"+g.result}return g.result};Object.getOwnPropertyNames(a).forEach(function(d){var c=a[d];if(typeof c===\"function\"&&d!==\"callback\"){a[d]=function(){return c.apply(a,[d].concat(Array.prototype.slice.call(arguments,0)))}}});");
-            sb.append(String.format("b.%s=a;",mInjectedName));
-            sb.append(String.format("console.log(\"HostApp %s initialization end\"",mInjectedName));
+            sb.append(String.format("b.%s=b.%s || a;", mInjectedName, mInjectedName));
+            sb.append(String.format("console.log(\"HostApp %s initialization end\"", mInjectedName));
             sb.append(")})(window);");
             mPreloadInterfaceJS = sb.toString();
         } catch (Exception e) {
