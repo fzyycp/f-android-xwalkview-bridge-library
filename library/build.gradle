@@ -18,6 +18,9 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -46,6 +49,9 @@ uploadArchives {
 publish {
 // gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=apikey -PdryRun=false
     userOrg = 'faury'//bintray.com用户名
+    bintrayUser = BINTRAY_USER
+    bintrayKey = BINTRAY_KEY
+    dryRun = false
     groupId = 'cn.faury.android.library'//jcenter上的路径
     artifactId = 'f-android-xwalkview-bridge-library'//项目名称
     publishVersion = '0.0.7'//版本号
